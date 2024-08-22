@@ -1,0 +1,70 @@
+import numpy as np
+my_list = [5,10,28,35,55]
+arr=np.array(my_list) 
+print(arr)
+new_numbr = 100
+new_arr = np.append(arr,new_numbr)
+print("Array after adding numbers:", new_arr)
+
+
+#Question2
+my_list = [0,1,2,3,4]
+arr=np.array(my_list) 
+num_elements = int(input("How many elements do you want to add? "))
+for _ in range(num_elements):
+    element = float(input("Enter a number to add to the array: "))
+    arr = np.append(arr, element)
+print("Final array:", arr)
+
+
+#Question3
+import json
+
+json_data = '''
+{
+    "date": "2024-08-20",
+    "explanation": "This is a sample explanation of the Astronomy Picture of the Day.",
+    "hdurl": "https://example.com/hduml",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Sample APOD Title",
+    "url": "https://example.com/image.jpg"
+}
+'''
+
+data = json.loads(json_data)
+explanation = data.get("explanation", "No explanation available")
+title = data.get("title", "No title available")
+print("Explanation:", explanation)
+print("Title:", title)
+
+
+#Question4
+import requests
+url = "http://api.open-notify.org/iss-now.json"
+response = requests.get(url)
+if response.status_code == 200:
+    data = response.json()
+    print(json.dumps(data, indent=4))
+else:
+    print(f"Failed to retrieve data. Status code: {response.status_code}")
+
+
+#Question5
+import requests
+url = "http://api.open-notify.org/iss-now.json"
+response = requests.get(url)
+if response.status_code == 200:
+    data = response.json()
+    
+    iss_position = data.get("iss_position", {})
+    timestamp = data.get("timestamp")
+    
+    latitude = iss_position.get("latitude", "No data")
+    longitude = iss_position.get("longitude", "No data")
+    
+    print("Latitude:", latitude)
+    print("Longitude:", longitude)
+    print("Timestamp:", timestamp)
+else:
+    print(f"Failed to retrieve data. Status code: {response.status_code}")
